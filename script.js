@@ -59,70 +59,47 @@
 
 
 
-// Contador superior de seguidores en Verkami.
-// Se actualiza al abrir la página usando una función Netlify/Vercel/local.
-// Importante: una web estática no puede leer Verkami directamente por CORS.
+// Contador de seguidores usando Cloudflare Worker.
+// Funciona con GitHub Pages porque el Worker hace de proxy para leer Verkami.
+
 (() => {
-  const countEl = document.getElementById('followersCount');
-  const pill = document.querySelector('.followers-pill');
-  const label = document.getElementById('followersLiveLabel');
+  const countEl = document.getElementById("followersCount");
+  const pill = document.querySelector(".followers-pill");
+  const label = document.getElementById("followersLiveLabel");
+
   if (!countEl) return;
 
-  const endpoints = [
-    '/.netlify/functions/verkami-followers',
-    '/api/verkami-followers'
-  ];
+  const WORKER_URL = "PEGA_AQUI_TU_URL_DEL_WORKER";
 
-  function setStatus(text, live = false) {
-    if (label) label.textContent = text;
-    if (pill) pill.classList.toggle('is-live', live);
-  }
+  async function loadFollowers() {
+    try {
+      countEl.textContent = "...";
 
-  function animateTo(target) {
-    if (!Number.isFinite(target) || target <= 0) return;
-    countEl.classList.remove('is-loading');
-    const initial = Number(countEl.textContent) || 0;
-    const duration = 850;
-    let start = null;
-    const animate = (timestamp) => {
-      if (!start) start = timestamp;
-      const progress = Math.min(1, (timestamp - start) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      countEl.textContent = Math.round(initial + (target - initial) * eased).toString();
-      if (progress < 1) requestAnimationFrame(animate);
-      else countEl.textContent = target.toString();
-    };
-    requestAnimationFrame(animate);
-  }
+      const response = await fetch(`${WORKER_URL}?t=${Date.now()}`, {
+        cache: "no-store"
+      });
 
-  async function fetchFollowers() {
-    countEl.textContent = countEl.textContent && countEl.textContent !== '...' ? countEl.textContent : '...';
-    countEl.classList.add('is-loading');
-    setStatus('actualizando...', false);
-
-    for (const endpoint of endpoints) {
-      try {
-        const url = `${endpoint}?t=${Date.now()}`;
-        const response = await fetch(url, { cache: 'no-store', headers: { 'accept': 'application/json' } });
-        if (!response.ok) continue;
-        const data = await response.json();
-        const followers = Number(data.followers);
-        if (Number.isFinite(followers) && followers > 0) {
-          countEl.dataset.followers = String(followers);
-          animateTo(followers);
-          setStatus('actualizado al abrir', true);
-          return;
-        }
-      } catch (error) {
-        // Sigue probando con el siguiente endpoint.
+      if (!response.ok) {
+        throw new Error("No se pudo leer el contador");
       }
-    }
 
-    countEl.textContent = '—';
-    countEl.classList.remove('is-loading');
-    setStatus('ver en Verkami', false);
+      const data = await response.json();
+      const followers = Number(data.followers);
+
+      if (Number.isFinite(followers) && followers > 0) {
+        countEl.textContent = followers.toString();
+        if (pill) pill.classList.add("is-live");
+        if (label) label.textContent = "actualizado al abrir";
+      } else {
+        countEl.textContent = "—";
+        if (label) label.textContent = "no disponible";
+      }
+    } catch (error) {
+      countEl.textContent = "—";
+      if (label) label.textContent = "no disponible";
+      console.error(error);
+    }
   }
 
-  fetchFollowers();
-  setInterval(fetchFollowers, 10 * 60 * 1000);
+  loadFollowers();
 })();
