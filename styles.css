@@ -1317,3 +1317,11 @@ body { padding-bottom: 0; }
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Ajustes de estabilidad móvil */
+.comic-burst { display: none !important; }
+@media (max-width: 700px) {
+  .hero-art { min-height: auto; }
+  .main-card { position: relative; right: auto; top: auto; width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
+}
