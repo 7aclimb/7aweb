@@ -1325,3 +1325,38 @@ body { padding-bottom: 0; }
   .hero-art { min-height: auto; }
   .main-card { position: relative; right: auto; top: auto; width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
 }
+
+
+/* Correcciones finales: portada móvil y bursts eliminados */
+.comic-burst,
+.burst-one,
+.burst-two,
+.pop-burst {
+  display: none !important;
+}
+.followers-number.is-loading {
+  font-size: 1.65rem;
+  opacity: .8;
+}
+@media (max-width: 700px) {
+  .hero-art {
+    min-height: auto !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+  .main-card {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 430px !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+  .poster-card img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}

@@ -60,19 +60,30 @@
 
 
 // Contador superior de seguidores en Verkami.
-// Para actualizarse necesita un pequeño proxy/backend, porque el navegador no puede leer Verkami directamente por CORS.
+// Se actualiza al abrir la página usando una función Netlify/Vercel/local.
+// Importante: una web estática no puede leer Verkami directamente por CORS.
 (() => {
   const countEl = document.getElementById('followersCount');
   const pill = document.querySelector('.followers-pill');
+  const label = document.getElementById('followersLiveLabel');
   if (!countEl) return;
 
-  const fallback = Number(countEl.dataset.followers || countEl.textContent || 0);
+  const endpoints = [
+    '/.netlify/functions/verkami-followers',
+    '/api/verkami-followers'
+  ];
+
+  function setStatus(text, live = false) {
+    if (label) label.textContent = text;
+    if (pill) pill.classList.toggle('is-live', live);
+  }
 
   function animateTo(target) {
     if (!Number.isFinite(target) || target <= 0) return;
-    let start = null;
-    const initial = Number(countEl.textContent || 0) || 0;
+    countEl.classList.remove('is-loading');
+    const initial = Number(countEl.textContent) || 0;
     const duration = 850;
+    let start = null;
     const animate = (timestamp) => {
       if (!start) start = timestamp;
       const progress = Math.min(1, (timestamp - start) / duration);
@@ -85,28 +96,31 @@
   }
 
   async function fetchFollowers() {
-    const endpoints = [
-      '/api/verkami-followers',
-      '/.netlify/functions/verkami-followers'
-    ];
+    countEl.textContent = countEl.textContent && countEl.textContent !== '...' ? countEl.textContent : '...';
+    countEl.classList.add('is-loading');
+    setStatus('actualizando...', false);
 
     for (const endpoint of endpoints) {
       try {
-        const response = await fetch(`${endpoint}?t=${Date.now()}`, { cache: 'no-store' });
+        const url = `${endpoint}?t=${Date.now()}`;
+        const response = await fetch(url, { cache: 'no-store', headers: { 'accept': 'application/json' } });
         if (!response.ok) continue;
         const data = await response.json();
         const followers = Number(data.followers);
         if (Number.isFinite(followers) && followers > 0) {
           countEl.dataset.followers = String(followers);
           animateTo(followers);
-          if (pill) pill.classList.add('is-live');
+          setStatus('actualizado al abrir', true);
           return;
         }
       } catch (error) {
-        // Si no hay backend, mantiene el último valor manual.
+        // Sigue probando con el siguiente endpoint.
       }
     }
-    animateTo(fallback);
+
+    countEl.textContent = '—';
+    countEl.classList.remove('is-loading');
+    setStatus('ver en Verkami', false);
   }
 
   fetchFollowers();

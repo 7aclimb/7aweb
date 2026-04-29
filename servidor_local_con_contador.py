@@ -16,6 +16,9 @@ def parse_followers(html: str):
     text = text.replace("&nbsp;", " ")
     text = re.sub(r"\s+", " ", text)
     patterns = [
+        r"([\d.,]{1,9})\s+are\s+already\s+following\s+it",
+        r"([\d.,]{1,9})\s+people\s+are\s+following",
+        r"([\d.,]{1,9})\s+already\s+following",
         r"(\d{1,6})\s+personas?\s+(?:siguen|sigue|siguiendo)",
         r"(\d{1,6})\s+(?:seguidores|followers)",
         r"(?:siguen|siguiendo)\s+(\d{1,6})\s+personas?",
@@ -26,7 +29,7 @@ def parse_followers(html: str):
     for pattern in patterns:
         m = re.search(pattern, text if not pattern.startswith('"') else html, flags=re.I)
         if m:
-            return int(m.group(1))
+            return int(re.sub(r"[.,\s]", "", m.group(1)))
     return None
 
 
