@@ -69,7 +69,7 @@
 
   if (!countEl) return;
 
-  const WORKER_URL = https://verkami-7a-counter.laster3000.workers.dev/;
+  const WORKER_URL = "https://verkami-7a-counter.laster3000.workers.dev";
 
   async function loadFollowers() {
     try {
