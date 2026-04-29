@@ -5,76 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>7a ¡Escala como puedas! · Crowdfunding</title>
   <meta name="description" content="Página de captación para el crowdfunding de 7a ¡Escala como puedas!, juego de cartas de escalada deportiva." />
+  <meta name="theme-color" content="#f7c641" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
-  <a class="floating-cta" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
-  <div class="dynamic-decor" aria-hidden="true">
-    <span class="speed-line line-a"></span>
-    <span class="speed-line line-b"></span>
-    <span class="speed-line line-c"></span>
-    <span class="dot dot-a"></span>
-    <span class="dot dot-b"></span>
-    <span class="dot dot-c"></span>
-  </div>
-  <div class="parallax-bg" aria-hidden="true">
+
+  <div class="background" aria-hidden="true">
     <img src="assets/fondo-canon.jpg" alt="" />
   </div>
-  <div class="page-filter" aria-hidden="true"></div>
+  <div class="background-filter" aria-hidden="true"></div>
+
+  <a class="mobile-sticky-cta" href="https://vkm.is/7a" target="_blank" rel="noreferrer">
+    !QUIERO MI JUEGO! AVISAME
+  </a>
 
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="7a ¡Escala como puedas!">
-      <img class="brand-logo" src="assets/logo-7a.png" alt="7a ¡Escala como puedas!" />
+      <img src="assets/logo-7a.png" alt="7a ¡Escala como puedas!" />
     </a>
+
     <a class="followers-pill" href="https://vkm.is/7a" target="_blank" rel="noreferrer" aria-label="Personas que siguen el proyecto en Verkami">
-      <span class="followers-number is-loading" id="followersCount" data-followers="">...</span>
-      <span class="followers-text">siguiendo el proyecto<br><b>en Verkami</b><small id="followersLiveLabel">actualizando...</small></span>
+      <span class="followers-number" id="followersCount">...</span>
+      <span class="followers-copy">
+        siguiendo el proyecto
+        <small id="followersLiveLabel">actualizando...</small>
+      </span>
     </a>
-    <nav aria-label="Navegación principal">
+
+    <nav class="main-nav" aria-label="Navegación">
+      <a href="#crowdfunding">Crowdfunding</a>
       <a href="#video">Vídeo</a>
-      <a href="#juego">Ejemplo de juego</a>
+      <a href="#juego">Juego</a>
       <a href="#cartas">Cartas</a>
-      <a class="instagram-link" href="https://www.instagram.com/7a.climb/" target="_blank" rel="noreferrer">Instagram @7a.climb</a>
-      <a class="nav-cta" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
+      <a href="https://www.instagram.com/7a.climb/" target="_blank" rel="noreferrer">@7a.climb</a>
     </nav>
   </header>
 
   <main id="inicio">
     <section class="hero page-section">
-      <div class="hero-copy comic-panel">
+      <div class="hero-copy comic-panel reveal">
         <p class="kicker">Juego de cartas · Escalada deportiva · Humor · Piques</p>
-        <h1 class="hero-title-image">
-          <img class="hero-logo" src="assets/logo-7a.png" alt="7a ¡Escala como puedas!" />
+        <h1 class="hero-logo-title">
+          <img src="assets/logo-7a.png" alt="7a ¡Escala como puedas!" />
         </h1>
         <p class="lead">
           Sé el primer escalador en completar una vía de grado <strong>7a</strong>. Entrena, escala, gestiona tu energía y sobrevive a la meteo, las lesiones y los sabotajes.
         </p>
         <div class="hero-actions">
-          <a class="button primary cta-bounce" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
+          <a class="button primary" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
           <a class="button secondary" href="#video">Ver cómo se juega</a>
         </div>
-        <div class="quick-facts" aria-label="Datos principales del juego">
+        <div class="quick-facts">
           <div><strong>2–6</strong><span>jugadores</span></div>
           <div><strong>D20</strong><span>tiradas</span></div>
           <div><strong>7a</strong><span>objetivo</span></div>
         </div>
       </div>
 
-      <div class="hero-art parallax-layer">
-        <figure class="main-card poster-card float-card">
-          <img src="assets/portada-manual.jpg" alt="Portada del manual de 7a ¡Escala como puedas!" />
-        </figure>
-      </div>
+      <figure class="hero-image poster-card reveal">
+        <img src="assets/portada-manual.jpg" alt="Portada del manual de 7a ¡Escala como puedas!" />
+      </figure>
     </section>
 
     <section class="ticker" aria-label="Elementos del juego">
-      <div>
-        Escalada · Técnicas · Mochila · Meteo · Lesiones · Energía · Dado de 20 · Sabotajes · Piques · Escalada · Técnicas · Mochila · Meteo · Lesiones · Energía · Dado de 20 · Sabotajes · Piques
-      </div>
+      <div>Escalada · Técnicas · Mochila · Meteo · Lesiones · Energía · Dado de 20 · Sabotajes · Piques · Escalada · Técnicas · Mochila · Meteo · Lesiones · Energía · Dado de 20 · Sabotajes · Piques</div>
     </section>
 
-    <section class="page-section reveal two-columns" id="premisa">
+    <section class="page-section premise-section reveal" id="premisa">
       <div class="section-title comic-panel dark-title">
         <p class="kicker">La premisa</p>
         <h2>Escalar o entrenar, esa es la cuestión.</h2>
@@ -97,22 +98,22 @@
           <p>Usa cartas de mochila para ayudarte o complicar la vía de otros escaladores.</p>
         </article>
       </div>
-      <a class="inline-crowd-link reveal" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
     </section>
 
-    <section class="page-section reveal crowdfunding-section" id="crowdfunding">
+    <section class="page-section crowdfunding-section reveal" id="crowdfunding">
       <div class="comic-panel crowdfunding-main">
         <p class="kicker">Importante</p>
         <h2>Esto es un crowdfunding: todavía no es una tienda</h2>
         <p class="crowd-lead">
-          <strong>7a ¡Escala como puedas! se abrirá muy pronto en Verkami.</strong> Ahora mismo aún no se puede comprar el juego: lo importante es apuntarse en la página de precampaña para recibir el aviso cuando se active.
+          <strong>7a ¡Escala como puedas! se abrirá muy pronto en Verkami.</strong>
+          Ahora mismo aún no se puede comprar el juego: lo importante es apuntarse para recibir el aviso cuando se active la campaña.
         </p>
         <div class="status-strip">
-          <span>Ahora: apúntate</span>
+          <span>Ahora: te apuntas</span>
           <span>En breve: se abre la campaña</span>
           <span>Después: eliges recompensa</span>
         </div>
-        <a class="button primary cta-bounce" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
+        <a class="button primary big-cta" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
       </div>
 
       <div class="crowdfunding-steps">
@@ -129,25 +130,27 @@
         <article class="crowd-step">
           <strong>3</strong>
           <h3>Eliges recompensa</h3>
-          <p>En ese momento podrás apoyar el juego escogiendo la recompensa que prefieras.</p>
+          <p>Entonces podrás apoyar el juego escogiendo la recompensa que prefieras.</p>
         </article>
         <article class="crowd-step">
           <strong>4</strong>
           <h3>Todo o nada</h3>
-          <p>Si se alcanza el objetivo, el proyecto puede fabricarse. Si no se alcanza, Verkami no cobra la aportación.</p>
+          <p>Si se alcanza el objetivo, el proyecto se fabrica. Si no se alcanza, Verkami no cobra la aportación.</p>
         </article>
       </div>
 
-      <div class="comic-panel crowdfunding-why crowd-why-highlight">
-        <div class="why-badge">IMPORTANTE</div>
+      <aside class="crowd-why-highlight">
+        <div class="why-badge">Lee esto</div>
         <h3>¿Por qué apuntarse antes?</h3>
-        <p>Porque <strong>cuanta más gente siga el proyecto antes del lanzamiento</strong>, antes podré valorar que hay interés real y abrir la campaña con más fuerza.</p>
+        <p>
+          Porque <strong>cuanta más gente siga el proyecto antes del lanzamiento</strong>, antes podré valorar que hay interés real y abrir la campaña con más fuerza.
+        </p>
         <p class="why-impact">Tu aviso ayuda a que el juego llegue antes a mesa.</p>
-        <a class="button primary cta-bounce why-button" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
-      </div>
+        <a class="button primary" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
+      </aside>
     </section>
 
-    <section class="page-section reveal content-section" id="contenido">
+    <section class="page-section content-section reveal" id="contenido">
       <div class="comic-panel section-copy">
         <p class="kicker">Qué contiene</p>
         <h2>Todo listo para montar la pared en la mesa</h2>
@@ -165,12 +168,13 @@
       </figure>
     </section>
 
-    <section class="page-section reveal video-section" id="video">
+    <section class="page-section video-section reveal" id="video">
       <div class="comic-panel video-copy">
         <p class="kicker">Vídeo explicativo</p>
         <h2>Mira cómo se juega</h2>
+        <p>Un vistazo rápido al ritmo del juego: entrenar, escalar, tirar el dado y sobrevivir al caos de la mesa.</p>
       </div>
-      <div class="video-embed-card video-direct-card">
+      <div class="video-card">
         <iframe
           src="https://www.youtube.com/embed/pb2XyVeW_f4?rel=0&modestbranding=1&playsinline=1"
           title="Vídeo explicativo de 7a ¡Escala como puedas!"
@@ -178,13 +182,11 @@
           referrerpolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
-        <a class="video-fallback" href="https://youtu.be/pb2XyVeW_f4" target="_blank" rel="noreferrer">
-          Abrir vídeo en una pestaña nueva
-        </a>
+        <a class="video-fallback" href="https://youtu.be/pb2XyVeW_f4" target="_blank" rel="noreferrer">Abrir vídeo en YouTube</a>
       </div>
     </section>
 
-    <section class="page-section reveal example-section" id="juego">
+    <section class="page-section example-section reveal" id="juego">
       <div class="comic-panel section-copy">
         <p class="kicker">Cómo se juega</p>
         <h2>Ejemplo de juego</h2>
@@ -192,19 +194,19 @@
           La partida se entiende mejor viendo una vía en acción: entrenas, eliges cuándo escalar, resuelves pasos con el dado y gestionas la energía para no caerte antes de llegar al encadene.
         </p>
       </div>
-      <figure class="poster-card image-panel example-image">
+      <figure class="poster-card image-panel">
         <img src="assets/ejemplo-juego.jpg" alt="Ejemplo de juego de 7a ¡Escala como puedas!" />
       </figure>
     </section>
 
-    <section class="page-section reveal cards-section" id="cartas">
+    <section class="page-section cards-section reveal" id="cartas">
       <div class="comic-panel cards-copy">
         <p class="kicker">Cartas y caos controlado</p>
         <h2>Cada carta cambia la pared</h2>
         <p>
-          Vías, entrenamiento, técnicas, mochila, meteo, lesiones y acciones crean partidas con tensión, humor y decisiones constantes.
+          Vías, entrenamiento, meteo, lesiones, acciones y mochila. Todo puede cambiar justo cuando crees que vas a encadenar.
         </p>
-        <div class="techniques" aria-label="Técnicas de escalada del juego">
+        <div class="techniques">
           <span>Cazo</span><span>Bicicleta</span><span>Bandera</span><span>Dinámico</span><span>Bidedo</span><span>Pinza</span><span>Romo</span><span>Lance</span>
         </div>
       </div>
@@ -213,16 +215,15 @@
       </figure>
     </section>
 
-    <section class="page-section reveal final-section" id="quiero-mi-juego">
-      <div class="final-card comic-panel">
-        <p class="kicker">Crowdfunding</p>
-        <h2>¿Preparado para el pegue?</h2>
-        <p>
-          7a ¡Escala como puedas! busca llegar a mesa con una propuesta de escalada deportiva, estética de cómic, tensión de tiradas, gestión de energía y mucho pique entre jugadores.
-        </p>
-        <a class="button primary huge cta-bounce" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
-        <a class="instagram-big" href="https://www.instagram.com/7a.climb/" target="_blank" rel="noreferrer">Síguenos en Instagram: @7a.climb</a>
-        <p class="note">Ahora el proyecto está en fase de aviso. Entra en <strong>Vkm.is/7a</strong>, síguelo y Verkami te avisará cuando se abra. También puedes seguir novedades en Instagram: <strong>@7a.climb</strong>.</p>
+    <section class="page-section final-section reveal">
+      <div class="comic-panel final-card">
+        <p class="kicker">Precampaña abierta</p>
+        <h2>Cuanta más gente se apunte, antes subimos la vía</h2>
+        <p>Ahora toca seguir el proyecto en Verkami para recibir el aviso cuando se abra la campaña.</p>
+        <div class="final-actions">
+          <a class="button primary" href="https://vkm.is/7a" target="_blank" rel="noreferrer">!QUIERO MI JUEGO! AVISAME</a>
+          <a class="button secondary" href="https://www.instagram.com/7a.climb/" target="_blank" rel="noreferrer">Instagram @7a.climb</a>
+        </div>
       </div>
     </section>
   </main>
